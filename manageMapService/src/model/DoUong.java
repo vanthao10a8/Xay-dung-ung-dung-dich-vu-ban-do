@@ -1,8 +1,5 @@
 package model;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
 /**
  * 
  * @author ThaoNguyen
@@ -28,7 +25,7 @@ public class DoUong {
 	/**
 	 * ngay tao
 	 */
-	private Date ngayTao;
+	//private Date ngayTao;
 	
 	/**
 	 * Default Constructor
@@ -45,12 +42,12 @@ public class DoUong {
 	 * @param {sql.Date} ngayTao
 	 */
 	public DoUong(String maDoUong, String tenDoUong, String loaiDoUong, 
-			double giaDoUong,Date ngayTao  ) {
+			double giaDoUong/*,Date ngayTao*/  ) {
 		this.maDoUong = maDoUong;
 		this.tenDoUong = tenDoUong;
 		this.loaiDoUong = loaiDoUong;
 		this.giaDoUong = giaDoUong;
-		this.ngayTao = ngayTao;
+		//this.ngayTao = ngayTao;
 	}
 	/**
 	 * lay ma do uong
@@ -112,28 +109,28 @@ public class DoUong {
 	 * Lay ngay tao cua do uong
 	 * @return {Date} giaDoUong
 	 */
-	public Date getDate() {
-		return ngayTao;
-	}
+	//public Date getDate() {
+	//	return ngayTao;
+	//}
 	/**
 	 * dat ngay tao cho do uong
 	 * @param {double} giaDoUong
 	 */
-	public void setDate(Date date) {
-		this.ngayTao = date;
-	}
+	//public void setDate(Date date) {
+	//	this.ngayTao = date;
+	//}
 	
 	/**
 	 * @return {String} thong tin cua class DoUong
 	 */
 	public String toString() {
 		String s = "";
-		SimpleDateFormat sf = new SimpleDateFormat("EEE, MMM d, ''yy");
+		//SimpleDateFormat sf = new SimpleDateFormat("EEE, MMM d, ''yy");
 		s+="Ma do uong: " + maDoUong + "\n" 
 		 + "Ten do uong: " + tenDoUong + "\n"
 		 + "Loai do uong: " + loaiDoUong + "\n"
-		 + "Gia do uong: " + giaDoUong + "\n"
-		 + "Ngay tao: " + sf.format(ngayTao) + "\n";
+		 + "Gia do uong: " + giaDoUong + "\n";
+		 //+ "Ngay tao: " + sf.format(ngayTao) + "\n";
 		return s;
 	}
 }
