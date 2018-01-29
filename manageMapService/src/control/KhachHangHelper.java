@@ -6,14 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class BanHelper {
-	public static String tenBang = "Ban";
+public class KhachHangHelper {
+
+	public static final String tenBang = "KhachHang";
 	private Statement stmt = null;
 	private Connection con = null;
-	//Them ban
-	//Xoa ban
-	//Cap nhat ban
-	//tim kiem ban
 	
 	public boolean kiemTraTonTaiBang(String tenBang) throws SQLException {
 		//Connection con = null;
@@ -21,7 +18,7 @@ public class BanHelper {
 			con = ConnectionUtils.getConnection();
 			DatabaseMetaData dbm = con.getMetaData();
 			// Kiem tra bang "TaiKhoan" co ton tai khong
-			ResultSet tables = dbm.getTables(null, null, BanHelper.tenBang, null);
+			ResultSet tables = dbm.getTables(null, null, KhachHangHelper.tenBang, null);
 			if (tables.next()) {
 				//Neu bang co ton tai
 				return true;
@@ -44,20 +41,21 @@ public class BanHelper {
 		//Connection con = null;
 		try {
 			//Kien tra bang co chua
-			if(kiemTraTonTaiBang(BanHelper.tenBang) == true) {
+			if(kiemTraTonTaiBang(KhachHangHelper.tenBang) == true) {
 				return;
 			}
 			//Neu chua co thi se tao moi
 			else{
 				con = ConnectionUtils.getConnection();
 				stmt = con.createStatement();
-				String sql = "CREATE TABLE "+ BanHelper.tenBang + " ("
-						+ "MaBan varchar(50) not null," 
-						+ "LoaiBan varchar(50) not null,"
-						+ "MaKhachDatBan varchar(15) null,"
-						+ "ThoiGianConLai time null,"
-						+ "TrangThaiBan bit null default 0 "
-						+ "PRIMARY KEY (MaBan)"
+				String sql = "CREATE TABLE "+ KhachHangHelper.tenBang + " ("
+						+ "MaKH varchar(15) not null," 
+						+ "HoKhach varchar(50) not null,"
+						+ "TenKhach varchar(50) not null,"
+						+ "Email varchar(50) not null,"
+						+ "DiaChi varchar(50) not null,"
+						+ "TaiKhoanKhach varchar(15) not null,"
+						+ "PRIMARY KEY (MaKH)"
 						+");";
 				stmt.executeUpdate(sql);
 			}
@@ -73,18 +71,15 @@ public class BanHelper {
 	public void themKhoa() throws SQLException {
 		con = ConnectionUtils.getConnection();
 		stmt = con.createStatement();
-		String sql = "ALTER TABLE Ban ADD FOREIGN KEY (MaKhachDatBan) REFERENCES KhachHang(MaKH);";
+		String sql = "ALTER TABLE KhachHang ADD FOREIGN KEY (TaiKhoanKhach) REFERENCES TaiKhoan([TenDangNhap]);";
 		stmt.executeUpdate(sql);
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		BanHelper bh = new BanHelper();
-		bh.taoBang();
-		if(bh.kiemTraTonTaiBang(KhachHangHelper.tenBang)) {
-			bh.themKhoa();
-		}
-			
-		
+		KhachHangHelper kh = new KhachHangHelper();
+		kh.taoBang();
+		kh.themKhoa();
+		//+ "FOREIGN KEY (TaiKhoanKhach) REFERENCES " + TaiKhoanHelper.tenBang +  "([TenDangNhap])"
 	}
 	
 }

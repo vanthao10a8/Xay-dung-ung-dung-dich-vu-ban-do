@@ -11,6 +11,12 @@ public class KhachHang {
 	 * Ma so cua khach hang
 	 */
 	private String maKH;
+	
+	private String hoKhach;
+	private String tenKhach;
+	
+	
+
 	/**
 	 * Dia chi cua khach hang
 	 */
@@ -36,11 +42,13 @@ public class KhachHang {
 	 * @param emailKH
 	 * @param tkKhach
 	 */
-	public KhachHang(String maKH, String diaChiKH, String emailKH, TaiKhoan tkKhach) {
+	public KhachHang(String maKH, String hoKhach, String tenKhach, String diaChiKH, String emailKH, TaiKhoan tkKhach) {
 		this.maKH = maKH;
 		this.diaChiKH = diaChiKH;
 		this.emailKH = emailKH;
 		this.tkKhach = tkKhach;
+		this.hoKhach = hoKhach;
+		this.tenKhach = tenKhach;
 	}
 	
 	/**
@@ -99,4 +107,21 @@ public class KhachHang {
 	public void setTkKhach(TaiKhoan tkKhach) {
 		this.tkKhach = tkKhach;
 	}
+	
+	public String getHoKhach() {
+		return hoKhach;
+	}
+
+	public void setHoKhach(String hoKhach) {
+		this.hoKhach = hoKhach;
+	}
+
+	public String getTenKhach() {
+		return tenKhach;
+	}
+
+	public void setTenKhach(String tenKhach) {
+		this.tenKhach = tenKhach;
+	}
+	
 }

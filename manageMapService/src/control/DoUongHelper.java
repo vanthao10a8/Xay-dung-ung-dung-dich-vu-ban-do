@@ -111,7 +111,7 @@ public class DoUongHelper {
 		//Connection con = null;
 		try {
 			//Kien tra bang co chua
-			if(kiemTraTonTaiBang(TaiKhoanHelper.tenBang) == true) {
+			if(kiemTraTonTaiBang(DoUongHelper.tenBang) == true) {
 				return;
 			}
 			//Neu chua co thi se tao moi
@@ -211,11 +211,11 @@ public class DoUongHelper {
 		return du;
 	}
 	
-	public static void main(String[] args) throws SQLException {
+/*	public static void main(String[] args) throws SQLException {
 		DoUongHelper dv = new DoUongHelper();
-		/*System.out.println(dv.kiemTraTonTaiBang(DoUongHelper.tenBang));
+		System.out.println(dv.kiemTraTonTaiBang(DoUongHelper.tenBang));
 		dv.taoBang();
-		System.out.println(dv.kiemTraTonTaiBang(DoUongHelper.tenBang));*/
+		System.out.println(dv.kiemTraTonTaiBang(DoUongHelper.tenBang));
 		String maDoUong = "TD5";
 		String tenDoUong = "thao duoc";
 		String loaiDoUong = "nuoc";
@@ -240,6 +240,6 @@ public class DoUongHelper {
 		System.out.println("===========");
 		System.out.println(dv.layThongTinDoUong("TD10"));
 		
-	}
+	}*/
 	
 }
