@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import model.TaiKhoan;
+
 public class TaiKhoanHelper {
 	
 	public static String tenBang = "TaiKhoan";
@@ -169,6 +171,28 @@ public class TaiKhoanHelper {
 			con.close();
 		}
 		return false;
+	}
+	
+	public TaiKhoan layThongTinTaiKhoan(String userName, String passWords) {
+		try {
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT * FROM " + TaiKhoanHelper.tenBang + " WHERE TenDangNhap = '" + userName
+					+"' MatKhau = '" + passWords + "';";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				String userName1 = rs.getString(0);
+				String passWords1 = rs.getString(1);
+				int status = rs.getInt(2);
+				boolean flag = false;
+				if(status == 1) flag = true;
+				TaiKhoan tk = new TaiKhoan(userName1, passWords1, flag);
+				return tk;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 /*	public static void main(String[] args) throws Exception {

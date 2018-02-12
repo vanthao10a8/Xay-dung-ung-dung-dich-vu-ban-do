@@ -28,7 +28,7 @@ public class KhachHang {
 	/**
 	 * Thong tin tai khoan khach
 	 */
-	private TaiKhoan tkKhach;
+	private String tkKhach;
 	
 	/**
 	 * Default constructor
@@ -42,11 +42,11 @@ public class KhachHang {
 	 * @param emailKH
 	 * @param tkKhach
 	 */
-	public KhachHang(String maKH, String hoKhach, String tenKhach, String diaChiKH, String emailKH, TaiKhoan tkKhach) {
+	public KhachHang(String maKH, String hoKhach, String tenKhach, String diaChiKH, String emailKH, String tkKhach1) {
 		this.maKH = maKH;
 		this.diaChiKH = diaChiKH;
 		this.emailKH = emailKH;
-		this.tkKhach = tkKhach;
+		this.tkKhach = tkKhach1;
 		this.hoKhach = hoKhach;
 		this.tenKhach = tenKhach;
 	}
@@ -97,14 +97,14 @@ public class KhachHang {
 	 * Tai khoan khach
 	 * @return {TaiKhoan} tkKhach
 	 */
-	public TaiKhoan getTkKhach() {
+	public String getTkKhach() {
 		return tkKhach;
 	}
 	/**
 	 * Dat tai khoan khach
 	 * @param tkKhach
 	 */
-	public void setTkKhach(TaiKhoan tkKhach) {
+	public void setTkKhach(String tkKhach) {
 		this.tkKhach = tkKhach;
 	}
 	
@@ -122,6 +122,11 @@ public class KhachHang {
 
 	public void setTenKhach(String tenKhach) {
 		this.tenKhach = tenKhach;
+	}
+	
+	@Override
+	public String toString() {
+		return maKH + hoKhach + tenKhach ;
 	}
 	
 }

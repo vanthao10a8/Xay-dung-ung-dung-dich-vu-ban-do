@@ -5,6 +5,9 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import model.KhachHang;
 
 public class KhachHangHelper {
 
@@ -75,11 +78,89 @@ public class KhachHangHelper {
 		stmt.executeUpdate(sql);
 	}
 	
+	public boolean themKhachHang(KhachHang kh) {
+		try {
+			if(!kiemTraTonTaiBang(KhachHangHelper.tenBang))
+				taoBang();
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "INSERT INTO " + KhachHangHelper.tenBang + " VALUES("
+					+"'" + kh.getMaKH() + "',"
+					+"'" + kh.getHoKhach() + "',"
+					+"'" + kh.getTenKhach() + "',"
+					+"'" + kh.getEmailKH() + "',"
+					+"'" + kh.getDiaChiKH() + "',"
+					+"'" + kh.getTkKhach()+ "'"
+					+")";
+			System.out.println(sql);
+			stmt.executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean capNhatKhachHang(String maKH, String hoKH, String tenKH,
+			String emmailKH, String diaChiKH, String tkKhach) {
+		try {
+			if(!kiemTraTonTaiBang(KhachHangHelper.tenBang))
+				taoBang();
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "UPDATE " + KhachHangHelper.tenBang + " SET "
+					+"HoKhach='" + hoKH + "',"
+					+"TenKhach='" + tenKH + "',"
+					+"Email='" + emmailKH + "',"
+					+"DiaChi='" + diaChiKH + "',"
+					+"TaiKhoanKhach='" + tkKhach + "'"
+					+" WHERE MaKH='" + maKH +"';";
+			stmt.executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public ArrayList<KhachHang> layTatCaKH(){
+		ArrayList<KhachHang> list = null;
+		try {
+			list = new ArrayList<KhachHang>();
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT * FROM " + KhachHangHelper.tenBang + ";";
+			//System.out.println(sql);
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				String maKH = rs.getString("MaKH");
+				String hoKH = rs.getString("HoKhach");
+				String tenKH = rs.getString("TenKhach");
+				String emailKH = rs.getString("Email");
+				String diaChiKH = rs.getString("DiaChi");
+				String tkKhach = rs.getString("TaiKhoanKhach");
+				//System.out.println(maKH + hoKH + tenKH + emailKH + diaChiKH);
+				KhachHang kh = new KhachHang(maKH, hoKH, tenKH, diaChiKH, emailKH, tkKhach);
+				list.add(kh);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
 	public static void main(String[] args) throws SQLException {
 		KhachHangHelper kh = new KhachHangHelper();
 		kh.taoBang();
 		kh.themKhoa();
 		//+ "FOREIGN KEY (TaiKhoanKhach) REFERENCES " + TaiKhoanHelper.tenBang +  "([TenDangNhap])"
+		//kh.themKhachHang(new KhachHang("KH01", "Nguyen", "Van Thao", "HCM", "vanthao@gmail.com", new TaiKhoan("mkyong30", "877215",false)));
+		//kh.capNhatKhachHang("KH01", "Tran", "VanThao", "vanthao", "HN", "mkyong31");
+		ArrayList<KhachHang> list = kh.layTatCaKH();
+		//System.out.println(list);
+		for (KhachHang khachHang : list) {
+			System.out.println(khachHang);
+		}
 	}
 	
 }

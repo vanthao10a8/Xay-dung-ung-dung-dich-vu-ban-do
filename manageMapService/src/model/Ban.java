@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Timer;
-
 /**
  * 
  * @author ThaoNguyen
@@ -16,7 +14,7 @@ public class Ban {
 	//Trang thai dat ban
 	private boolean trangThaiBan;
 	//Dem thoi gian dat ban neu co
-	private Timer thoiGianDatConLai;
+	private String thoiGianDat;
 	//Khach hang dang dat ban
 	private String maKhachDatBan;
 	
@@ -25,15 +23,15 @@ public class Ban {
 	 * @param maBan
 	 * @param loaiBan
 	 * @param trangThaiBan
-	 * @param thoiGianDatConLai
+	 * @param thoiGianDat
 	 * @param maKhachDatBan
 	 */
-	public Ban(String maBan, String loaiBan, boolean trangThaiBan, Timer thoiGianDatConLai, String maKhachDatBan) {
+	public Ban(String maBan, String loaiBan, boolean trangThaiBan, String thoiGianDat, String maKhachDatBan) {
 		super();
 		this.maBan = maBan;
 		this.loaiBan = loaiBan;
 		this.trangThaiBan = trangThaiBan;
-		this.thoiGianDatConLai = thoiGianDatConLai;
+		this.thoiGianDat = thoiGianDat;
 		this.maKhachDatBan = maKhachDatBan;
 	}
 	
@@ -83,15 +81,15 @@ public class Ban {
 	 * Lay bo dem nguoc thoi gian cho viec dat ban
 	 * @return {Timer} thoiGianDatConLai
 	 */
-	public Timer getThoiGianDatConLai() {
-		return thoiGianDatConLai;
+	public String getThoiGianDat() {
+		return thoiGianDat;
 	}
 	/**
 	 * Dat bo dem nguoc thoi gian cho viec dat ban
 	 * @param {Timer} thoiGianDatConLai
 	 */
-	public void setThoiGianDatConLai(Timer thoiGianDatConLai) {
-		this.thoiGianDatConLai = thoiGianDatConLai;
+	public void setThoiGianDat(String thoiGianDat) {
+		this.thoiGianDat = thoiGianDat;
 	}
 	/**
 	 * Lay ma so cua khach dat hang

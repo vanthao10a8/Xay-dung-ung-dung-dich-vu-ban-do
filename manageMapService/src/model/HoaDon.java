@@ -9,72 +9,48 @@ import java.util.List;
  */
 
 public class HoaDon {
-	/**
-	 * Ma so cua hoa don
-	 */
-	private String maHoaDon;
+	private String maHD;
 	/**
 	 * Khach hang mua hoa don nay
 	 */
-	private KhachHang khachHang;
+	private String maKH;
+	/**
+	 * Nhan vien tao ra hoa don
+	 */
+	private String maNV;
 	/**
 	 * Danh sach do uong khach mua
 	 */
 	private List<DoUong> listDoUong;
 	/**
-	 * Nhan vien tao ra hoa don
-	 */
-	private NhanVien nhanVienBanHang;
-	
-	/**
 	 * constructor
-	 * @param maHoaDon
-	 * @param khachHang
+	 * @param maKH
+	 * @param maNV
 	 * @param listDoUong
-	 * @param nhanVienBanHang
 	 */
-	public HoaDon(String maHoaDon, KhachHang khachHang, List<DoUong> listDoUong, NhanVien nhanVienBanHang) {
-		super();
-		this.maHoaDon = maHoaDon;
-		this.khachHang = khachHang;
+	public HoaDon(String maHD, String maKH, String maNV, List<DoUong> listDoUong) {
+		this.maHD = maHD;
+		this.maKH = maKH;
+		this.maNV = maNV;
 		this.listDoUong = listDoUong;
-		this.nhanVienBanHang = nhanVienBanHang;
 	}
-	
 	/**
 	 * default constructor
 	 */
-	public HoaDon() {
-		
-	}
-	
+	public HoaDon() {}
 	/**
-	 * Lay ma hoa don
-	 * @return {String} maHoaDon
+	 * Tra ve ma khach hang
+	 * @return {String} maKH
 	 */
-	public String getMaHoaDon() {
-		return maHoaDon;
-	}
-	/**
-	 * Dat ma cho hoa don
-	 * @param maHoaDon
-	 */
-	public void setMaHoaDon(String maHoaDon) {
-		this.maHoaDon = maHoaDon;
-	}
-	/**
-	 * Tra ve khach hang
-	 * @return {KhachHang} khachHang
-	 */
-	public KhachHang getKhachHang() {
-		return khachHang;
+	public String getMaKH() {
+		return maKH;
 	}
 	/**
 	 * dat khach hang cho hoa don
 	 * @param khachHang
 	 */
-	public void setKhachHang(KhachHang khachHang) {
-		this.khachHang = khachHang;
+	public void setMaKH(String maKH) {
+		this.maKH = maKH;
 	}
 	/**
 	 * lay danh sach do uong khach goi
@@ -94,15 +70,21 @@ public class HoaDon {
 	 * Lay nhan vien ban hang
 	 * @return {NhanVien} nhanVienBanHang
 	 */
-	public NhanVien getNhanVienBanHang() {
-		return nhanVienBanHang;
+	public String getMaNV() {
+		return maNV;
 	}
 	/**
 	 * Dat nhan vien ban hang 
 	 * @param {NhanVien} nhanVienBanHang
 	 */
-	public void setNhanVienBanHang(NhanVien nhanVienBanHang) {
-		this.nhanVienBanHang = nhanVienBanHang;
+	public void setMaNV(String maNV) {
+		this.maNV = maNV;
+	}
+	public String getMaHD() {
+		return maHD;
+	}
+	public void setMaHD(String maHD) {
+		this.maHD = maHD;
 	}
 	
 }

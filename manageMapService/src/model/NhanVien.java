@@ -1,7 +1,5 @@
 package model;
 
-import java.sql.Date;
-
 /**
  * 
  * @author ThaoNguyen
@@ -24,7 +22,7 @@ public class NhanVien {
 	/**
 	 * Ngay sinh cua nhan vien
 	 */
-	private Date ngaySinh;
+	private String ngaySinh;
 	/**
 	 * Dia chi cua nhan vien
 	 */
@@ -58,7 +56,7 @@ public class NhanVien {
 	 * @param mucLuong
 	 * @param soNgayLam
 	 */
-	public NhanVien(String maSoNV, String hoTenNV, String gioiTinh, Date ngaySinh, String diaChi, String chucVu,
+	public NhanVien(String maSoNV, String hoTenNV, String gioiTinh, String ngaySinh, String diaChi, String chucVu,
 			double mucLuong, int soNgayLam) {
 		this.maSoNV = maSoNV;
 		this.hoTenNV = hoTenNV;
@@ -115,14 +113,14 @@ public class NhanVien {
 	 * Lay ngay sinh cho nhan vien
 	 * @return {java.sql.Date} ngaySinh
 	 */
-	public Date getNgaySinh() {
+	public String getNgaySinh() {
 		return ngaySinh;
 	}
 	/**
 	 * Dat ngay sinh cho nhan vien
 	 * @param {java.sql.Date} ngaySinh
 	 */
-	public void setNgaySinh(Date ngaySinh) {
+	public void setNgaySinh(String ngaySinh) {
 		this.ngaySinh = ngaySinh;
 	}
 	/**
@@ -181,7 +179,10 @@ public class NhanVien {
 	public void setSoNgayLam(int soNgayLam) {
 		this.soNgayLam = soNgayLam;
 	}
-	public static void main(String[] args) {
-		
+
+	@Override
+	public String toString() {
+		return maSoNV + " " + hoTenNV + " " + ngaySinh + " " + mucLuong ;
 	}
+	
 }

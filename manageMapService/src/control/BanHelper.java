@@ -5,15 +5,15 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import model.Ban;
 
 public class BanHelper {
 	public static String tenBang = "Ban";
 	private Statement stmt = null;
 	private Connection con = null;
-	//Them ban
-	//Xoa ban
-	//Cap nhat ban
-	//tim kiem ban
 	
 	public boolean kiemTraTonTaiBang(String tenBang) throws SQLException {
 		//Connection con = null;
@@ -55,7 +55,7 @@ public class BanHelper {
 						+ "MaBan varchar(50) not null," 
 						+ "LoaiBan varchar(50) not null,"
 						+ "MaKhachDatBan varchar(15) null,"
-						+ "ThoiGianConLai time null,"
+						+ "ThoiGianDat varchar(15) null,"
 						+ "TrangThaiBan bit null default 0 "
 						+ "PRIMARY KEY (MaBan)"
 						+");";
@@ -77,14 +77,84 @@ public class BanHelper {
 		stmt.executeUpdate(sql);
 	}
 	
+	public boolean themBan(Ban b) {
+		try {
+			if(!kiemTraTonTaiBang(BanHelper.tenBang)) {
+				taoBang();
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		int i = 0;
+		if(b.isTrangThaiBan())
+			i = 1;
+		String sql = "INSERT INTO " + BanHelper.tenBang + " VALUES('"
+				+ b.getMaBan()+"','"
+				+ b.getLoaiBan() + "', '"  
+				+ b.getMaKhachDatBan() + "', '" 
+				+ b.getThoiGianDat() + "',"
+				+ i 
+				+ ")";
+		try {
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			//System.out.println(sql);
+			stmt.executeUpdate(
+					sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean xoaBan(String maBan) {
+		try {
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "DELETE"
+					+ " FROM " + BanHelper.tenBang + " WHERE MaBan='"+maBan+"';";
+			stmt.executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean capNhatBan(String maBan,String loaiBan, String maKhachDatBan,
+			String thoiGianDat, int trangThaiDat) {
+		try {
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "UPDATE " + BanHelper.tenBang + " SET "
+					+ "LoaiBan='" + loaiBan + "',"
+					+ "MaKhachDatBan='" + maKhachDatBan +"',"
+					+ "ThoiGianDat='" + thoiGianDat +"',"
+					+ "TrangThaiBan=" + trangThaiDat 
+					+ " WHERE MaBan='"+maBan+"';";
+			stmt.executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
+	
 	public static void main(String[] args) throws SQLException {
 		BanHelper bh = new BanHelper();
-		bh.taoBang();
+		/*bh.taoBang();
 		if(bh.kiemTraTonTaiBang(KhachHangHelper.tenBang)) {
 			bh.themKhoa();
-		}
-			
-		
+		}*/
+		SimpleDateFormat sf = new SimpleDateFormat("hh:mm:ss");
+		String s = sf.format(new Date().getTime());
+		System.out.println(s);
+		bh.themBan(new Ban("Ban1", "Ban6Nguoi", true, s , ""));
+		//bh.xoaBan("Ban1");
+		bh.capNhatBan("Ban1", "Ban3Nguoi", "", s, 0);
 	}
 	
 }
