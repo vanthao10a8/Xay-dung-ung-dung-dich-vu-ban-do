@@ -12,8 +12,8 @@ public class KhachHang {
 	 */
 	private String maKH;
 	
-	private String hoKhach;
-	private String tenKhach;
+	private String hoTenKhach;
+	private String soDienThoai;
 	
 	
 
@@ -42,13 +42,13 @@ public class KhachHang {
 	 * @param emailKH
 	 * @param tkKhach
 	 */
-	public KhachHang(String maKH, String hoKhach, String tenKhach, String diaChiKH, String emailKH, String tkKhach1) {
+	public KhachHang(String maKH, String hoTenKhach, String soDienThoai, String diaChiKH, String emailKH, String tkKhach1) {
 		this.maKH = maKH;
 		this.diaChiKH = diaChiKH;
 		this.emailKH = emailKH;
 		this.tkKhach = tkKhach1;
-		this.hoKhach = hoKhach;
-		this.tenKhach = tenKhach;
+		this.hoTenKhach = hoTenKhach;
+		this.soDienThoai = soDienThoai;
 	}
 	
 	/**
@@ -104,29 +104,30 @@ public class KhachHang {
 	 * Dat tai khoan khach
 	 * @param tkKhach
 	 */
-	public void setTkKhach(String tkKhach) {
-		this.tkKhach = tkKhach;
-	}
-	
-	public String getHoKhach() {
-		return hoKhach;
-	}
-
-	public void setHoKhach(String hoKhach) {
-		this.hoKhach = hoKhach;
-	}
-
-	public String getTenKhach() {
-		return tenKhach;
-	}
-
-	public void setTenKhach(String tenKhach) {
-		this.tenKhach = tenKhach;
-	}
 	
 	@Override
 	public String toString() {
-		return maKH + hoKhach + tenKhach ;
+		return maKH + hoTenKhach + soDienThoai ;
+	}
+
+	public String getHoTenKhach() {
+		return hoTenKhach;
+	}
+
+	public void setHoTenKhach(String hoTenKhach) {
+		this.hoTenKhach = hoTenKhach;
+	}
+
+	public String getSoDienThoai() {
+		return soDienThoai;
+	}
+
+	public void setSoDienThoai(String soDienThoai) {
+		this.soDienThoai = soDienThoai;
+	}
+
+	public void setTkKhach(String tkKhach) {
+		this.tkKhach = tkKhach;
 	}
 	
 }

@@ -137,7 +137,7 @@ public class NhanVienHelper {
 	
 	
 	public static void main(String[] args) {
-		NhanVienHelper nvh = new NhanVienHelper();
+		//NhanVienHelper nvh = new NhanVienHelper();
 		try {
 			//nvh.taoBang();
 			//Date date = new Date();
@@ -151,7 +151,7 @@ public class NhanVienHelper {
 			//for (NhanVien nhanVien : list) {
 			//	System.out.println(nhanVien);
 			//}
-			nvh.capNhatNhanVien("NV2", "Thao", "2-10-1995", "Nam", "HCM", "Boss", 20, 1);
+			//nvh.capNhatNhanVien("NV2", "Thao", "2-10-1995", "Nam", "HCM", "Boss", 20, 1);
 			
 			
 		} catch (Exception e) {

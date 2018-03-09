@@ -10,6 +10,7 @@ public class TaiKhoan {
 	private String tenDangNhap;
 	private String matKhau;
 	private boolean trangThaiDangNhap;
+	private String quyenHan;
 	
 	/**
 	 * Constructor
@@ -17,10 +18,11 @@ public class TaiKhoan {
 	 * @param matKhau
 	 * @param trangThaiDangNhap
 	 */
-	public TaiKhoan(String tenDangNhap, String matKhau, boolean trangThaiDangNhap) {
+	public TaiKhoan(String tenDangNhap, String matKhau, boolean trangThaiDangNhap,String QuyenHan) {
 		this.tenDangNhap = tenDangNhap;
 		this.matKhau = matKhau;
 		this.trangThaiDangNhap = trangThaiDangNhap;
+		this.quyenHan = QuyenHan;
 	}
 	
 	/**
@@ -64,6 +66,14 @@ public class TaiKhoan {
 	 */
 	public void setTrangThaiDangNhap(boolean trangThaiDangNhap) {
 		this.trangThaiDangNhap = trangThaiDangNhap;
+	}
+
+	public String getQuyenHan() {
+		return quyenHan;
+	}
+
+	public void setQuyenHan(String quyenHan) {
+		this.quyenHan = quyenHan;
 	}
 	
 	

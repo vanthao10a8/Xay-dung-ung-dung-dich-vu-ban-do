@@ -53,8 +53,8 @@ public class KhachHangHelper {
 				stmt = con.createStatement();
 				String sql = "CREATE TABLE "+ KhachHangHelper.tenBang + " ("
 						+ "MaKH varchar(15) not null," 
-						+ "HoKhach varchar(50) not null,"
-						+ "TenKhach varchar(50) not null,"
+						+ "HoTen varchar(50) not null,"
+						+ "SoDienThoai varchar(50) not null,"
 						+ "Email varchar(50) not null,"
 						+ "DiaChi varchar(50) not null,"
 						+ "TaiKhoanKhach varchar(15) not null,"
@@ -86,8 +86,8 @@ public class KhachHangHelper {
 			stmt = con.createStatement();
 			String sql = "INSERT INTO " + KhachHangHelper.tenBang + " VALUES("
 					+"'" + kh.getMaKH() + "',"
-					+"'" + kh.getHoKhach() + "',"
-					+"'" + kh.getTenKhach() + "',"
+					+"'" + kh.getHoTenKhach() + "',"
+					+"'" + kh.getSoDienThoai() + "',"
 					+"'" + kh.getEmailKH() + "',"
 					+"'" + kh.getDiaChiKH() + "',"
 					+"'" + kh.getTkKhach()+ "'"
@@ -108,8 +108,8 @@ public class KhachHangHelper {
 			con = ConnectionUtils.getConnection();
 			stmt = con.createStatement();
 			String sql = "UPDATE " + KhachHangHelper.tenBang + " SET "
-					+"HoKhach='" + hoKH + "',"
-					+"TenKhach='" + tenKH + "',"
+					+"HoTen='" + hoKH + "',"
+					+"SoDienThoai='" + tenKH + "',"
 					+"Email='" + emmailKH + "',"
 					+"DiaChi='" + diaChiKH + "',"
 					+"TaiKhoanKhach='" + tkKhach + "'"
@@ -133,8 +133,8 @@ public class KhachHangHelper {
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				String maKH = rs.getString("MaKH");
-				String hoKH = rs.getString("HoKhach");
-				String tenKH = rs.getString("TenKhach");
+				String hoKH = rs.getString("HoTen");
+				String tenKH = rs.getString("SoDienThoai");
 				String emailKH = rs.getString("Email");
 				String diaChiKH = rs.getString("DiaChi");
 				String tkKhach = rs.getString("TaiKhoanKhach");

@@ -24,7 +24,7 @@ public class TaiKhoanHelper {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean dangKiTaiKhoan(String userName, String passWords) throws SQLException {
+	public boolean dangKiTaiKhoan(String userName, String passWords,String quyenHan) throws SQLException {
 		//Statement stmt = null;
 		//Connection con = null;
 		try {
@@ -38,8 +38,9 @@ public class TaiKhoanHelper {
 					con = ConnectionUtils.getConnection();
 					stmt = con.createStatement();
 					String sql = "INSERT INTO "+ TaiKhoanHelper.tenBang 
-							+ "(TenDangNhap, MatKhau, TinhTrangDangNhap) "
-							+ "VALUES ('"+userName+"', '"+passWords+"',0)";
+							+ "(TenDangNhap, MatKhau, TinhTrangDangNhap,QuyenHan) "
+							+ "VALUES ('"+userName+"', '"+passWords+"',0,'"+quyenHan+"+')";
+					//System.out.println(sql);
 					stmt.executeUpdate(sql);
 					return true;
 					
@@ -56,19 +57,20 @@ public class TaiKhoanHelper {
 					con = ConnectionUtils.getConnection();
 					stmt = con.createStatement();
 					String sql = "INSERT INTO "+ TaiKhoanHelper.tenBang 
-							+ "( TenDangNhap, MatKhau, TinhTrangDangNhap  )"
-							+ " VALUES ('"+userName+"', '"+passWords+"', 'false')";
+							+ "( TenDangNhap, MatKhau, TinhTrangDangNhap,QuyenHan  )"
+							+ " VALUES ('"+userName+"', '"+passWords+"', 0,'"+quyenHan+"')";
+					//System.out.println(sql);
 					stmt.executeUpdate(sql);
 				}
 				return true;
 			}
 			
 		} catch (Exception e) {
-			System.out.println("Trung ten tai khoan.");
+			System.out.println("Trung ten tai khoan." + e.getMessage());
 			return false;
 		} finally {
-			con.close();
-			stmt.close();
+			//con.close();
+			//stmt.close();
 		}
 	}
 	/**
@@ -138,6 +140,7 @@ public class TaiKhoanHelper {
 						+ "TenDangNhap varchar(15) not null," 
 						+ "MatKhau varchar(15) not null,"
 						+ "TinhTrangDangNhap bit null DEFAULT 0,"
+						+ "QuyenHan varchar(50) not null,"
 						+ "PRIMARY KEY (TenDangNhap)"
 						+")";
 				stmt.executeUpdate(sql);
@@ -183,10 +186,11 @@ public class TaiKhoanHelper {
 			while(rs.next()) {
 				String userName1 = rs.getString(0);
 				String passWords1 = rs.getString(1);
+				String quyenHan = rs.getString(3);
 				int status = rs.getInt(2);
 				boolean flag = false;
 				if(status == 1) flag = true;
-				TaiKhoan tk = new TaiKhoan(userName1, passWords1, flag);
+				TaiKhoan tk = new TaiKhoan(userName1, passWords1, flag,quyenHan);
 				return tk;
 			}
 		} catch (SQLException e) {
@@ -195,11 +199,35 @@ public class TaiKhoanHelper {
 		return null;
 	}
 	
-/*	public static void main(String[] args) throws Exception {
+	public String dangNhap(String userName, String passWords) {
+		try {
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT [TenDangNhap],[MatKhau],[TinhTrangDangNhap],[QuyenHan]"
+					+ " FROM TaiKhoan "
+					+ "where TenDangNhap = '"+userName+"' and MatKhau='"+passWords+"';";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				String quyenHan = rs.getString(4);
+				sql = "UPDATE TaiKhoan set TinhTrangDangNhap ="
+						+ " 1 where TenDangNhap='"+userName+"';";
+				stmt.executeUpdate(sql);
+				return quyenHan;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		return null;
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
 		TaiKhoanHelper tk = new TaiKhoanHelper();
-		System.out.println(tk.kiemTraTonTaiBang("TaiKhoan"));
-		System.out.println(tk.dangKiTaiKhoan("mkyong33", "123456"));
-		tk.xoaTaiKhoan("mkong37");
-		System.out.println(	"DELETE FROM "+ TaiKhoanHelper.tenBang + " WHERE [TenDangNhap] = '"+"mykong31"+"';");
-	}*/
+		//System.out.println(tk.kiemTraTonTaiBang("TaiKhoan"));
+		System.out.println(tk.dangKiTaiKhoan("mkyong33", "123456","Nhân Viên"));
+		//System.out.println(tk.dangNhap("mkyong33", "123456"));
+		//tk.xoaTaiKhoan("mkyong33");
+		//System.out.println(	"DELETE FROM "+ TaiKhoanHelper.tenBang + " WHERE [TenDangNhap] = '"+"mykong31"+"';");
+		//System.out.println(tk.dangNhap("mkyon30", "123456"));
+	}
 }
