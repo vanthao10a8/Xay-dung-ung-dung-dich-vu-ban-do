@@ -87,6 +87,12 @@ public class NhanVienHelper {
 	}
 	
 	public ArrayList<NhanVien> layTatCaNhanVien(){
+		try {
+			if(!kiemTraTonTaiBang(NhanVienHelper.tenBang))
+				return new ArrayList<>();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		ArrayList<NhanVien> list = new ArrayList<NhanVien>();
 		try {
 			con = ConnectionUtils.getConnection();
@@ -145,7 +151,7 @@ public class NhanVienHelper {
 			//df.format(date);
 			//String date = "7-10-2013";
 			//System.out.println(df.format(date));
-			//NhanVien nvx = new NhanVien("NV1", "ThaoNguyen", "Nam",date , "HCM", "PhaChe", 15.5, 6);
+			NhanVien nvx = new NhanVien("NV1", "ThaoNguyen", "Nam","02-10-1995" , "HCM", "PhaChe", 15.5, 6);
 			//nvh.themNhanVien(nvx);
 			//ArrayList<NhanVien> list = nvh.layTatCaNhanVien();
 			//for (NhanVien nhanVien : list) {
@@ -153,32 +159,80 @@ public class NhanVienHelper {
 			//}
 			//nvh.capNhatNhanVien("NV2", "Thao", "2-10-1995", "Nam", "HCM", "Boss", 20, 1);
 			
-			
+			NhanVienHelper nv = new NhanVienHelper();
+			nv.themNhanVien(nvx);
+			//System.out.println(nv.tinhSoNhanVien());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public boolean themNhanVien(NhanVien nv) {
+	public boolean themNhanVien(NhanVien nv) throws Exception {
+		if(kiemTraTonTaiBang(NhanVienHelper.tenBang)) {
+			try {
+				con = ConnectionUtils.getConnection();
+				stmt = con.createStatement();
+				String sql = "INSERT INTO " + NhanVienHelper.tenBang + " VALUES("
+						+ "'" + nv.getMaSoNV() + "',"
+						+ "'" + nv.getHoTenNV() + "',"
+						+ "'" + nv.getNgaySinh() + "',"
+						+ "'" + nv.getDiaChi() + "',"
+						+ "'" + nv.getGioiTinh() + "',"
+						+ "'" + nv.getChucVu() + "',"
+						+ nv.getMucLuong() + ","
+						+ nv.getSoNgayLam() 
+						+ ")";
+				System.out.println(sql);
+				stmt.executeUpdate(sql);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		} else {
+			taoBang();
+			try {
+				con = ConnectionUtils.getConnection();
+				stmt = con.createStatement();
+				String sql = "INSERT INTO " + NhanVienHelper.tenBang + " VALUES("
+						+ "'" + nv.getMaSoNV() + "',"
+						+ "'" + nv.getHoTenNV() + "',"
+						+ "'" + nv.getNgaySinh() + "',"
+						+ "'" + nv.getDiaChi() + "',"
+						+ "'" + nv.getGioiTinh() + "',"
+						+ "'" + nv.getChucVu() + "',"
+						+ nv.getMucLuong() + ","
+						+ nv.getSoNgayLam() 
+						+ ")";
+				System.out.println(sql);
+				stmt.executeUpdate(sql);
+				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+	}
+	
+	public int tinhSoNhanVien() {
+		try {
+			if(!kiemTraTonTaiBang(tenBang))
+				return 0;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		try {
 			con = ConnectionUtils.getConnection();
 			stmt = con.createStatement();
-			String sql = "INSERT INTO " + NhanVienHelper.tenBang + " VALUES("
-					+ "'" + nv.getMaSoNV() + "',"
-					+ "'" + nv.getHoTenNV() + "',"
-					+ "'" + nv.getNgaySinh() + "',"
-					+ "'" + nv.getDiaChi() + "',"
-					+ "'" + nv.getGioiTinh() + "',"
-					+ "'" + nv.getChucVu() + "',"
-					+ nv.getMucLuong() + ","
-					+ nv.getSoNgayLam() 
-					+ ")";
-			System.out.println(sql);
-			stmt.executeUpdate(sql);
-			return true;
+			String sql = "SELECT COUNT( MaNV) FROM " + NhanVienHelper.tenBang;
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.next();
+			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
+
 }
+

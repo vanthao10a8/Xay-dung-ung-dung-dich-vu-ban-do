@@ -105,4 +105,16 @@ public class Ban {
 	public void setMaKhachDatBan(String maKhachDatBan) {
 		this.maKhachDatBan = maKhachDatBan;
 	}
+	
+	@Override
+	public String toString() {
+		String s = "Mã bàn : " + maBan + "\n"
+				+ "Loại bàn : " + loaiBan + " Người"+ "\n" 
+				+ "Bàn Đang được đặt : " + trangThaiBan + "\n"
+				+ "Thời gian đặt : " + thoiGianDat + "\n"
+				+ "Mã khách đặt bàn : " + maKhachDatBan + "\n";
+		return s;
+	}
+	
+	
 }

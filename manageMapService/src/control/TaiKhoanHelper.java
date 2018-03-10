@@ -39,8 +39,8 @@ public class TaiKhoanHelper {
 					stmt = con.createStatement();
 					String sql = "INSERT INTO "+ TaiKhoanHelper.tenBang 
 							+ "(TenDangNhap, MatKhau, TinhTrangDangNhap,QuyenHan) "
-							+ "VALUES ('"+userName+"', '"+passWords+"',0,'"+quyenHan+"+')";
-					//System.out.println(sql);
+							+ "VALUES ('"+userName+"', '"+passWords+"',0,'"+quyenHan+"')";
+					System.out.println(sql);
 					stmt.executeUpdate(sql);
 					return true;
 					
@@ -222,9 +222,10 @@ public class TaiKhoanHelper {
 	
 	
 	public static void main(String[] args) throws Exception {
-		TaiKhoanHelper tk = new TaiKhoanHelper();
+		//TaiKhoanHelper tk = new TaiKhoanHelper();
 		//System.out.println(tk.kiemTraTonTaiBang("TaiKhoan"));
-		System.out.println(tk.dangKiTaiKhoan("mkyong33", "123456","Nhân Viên"));
+		//System.out.println(tk.dangKiTaiKhoan("mkyong33", "123456","Nhân Viên"));
+		//System.out.println(tk.dangKiTaiKhoan("NhanVien4", "123456", "Quản Lý"));
 		//System.out.println(tk.dangNhap("mkyong33", "123456"));
 		//tk.xoaTaiKhoan("mkyong33");
 		//System.out.println(	"DELETE FROM "+ TaiKhoanHelper.tenBang + " WHERE [TenDangNhap] = '"+"mykong31"+"';");

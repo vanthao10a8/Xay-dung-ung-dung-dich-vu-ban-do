@@ -15,6 +15,7 @@ public class DangNhapGUI extends javax.swing.JFrame {
      */
     public DangNhapGUI() {
         initComponents();
+        this.setTitle("Phần mềm quản lý quán cà phê");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
@@ -37,13 +38,13 @@ public class DangNhapGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTieuDe.setBackground(new java.awt.Color(0, 255, 0));
-        lblTieuDe.setFont(new java.awt.Font("Bodoni MT Black", 3, 18)); // NOI18N
-        lblTieuDe.setText("Coffee FUCK && GO");
+        lblTieuDe.setFont(new java.awt.Font("Bodoni MT Black", 3, 18)); 
+        lblTieuDe.setText("Coffee GO & FISH");
 
-        lblTenDangNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblTenDangNhap.setFont(new java.awt.Font("Arial", 0, 14)); 
         lblTenDangNhap.setText("Tên đăng nhập : ");
 
-        lblMatKhau.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblMatKhau.setFont(new java.awt.Font("Arial", 0, 14)); 
         lblMatKhau.setText("Mật Khẩu          :");
 
         btnDangNhap.setText("Đăng nhập");
@@ -136,18 +137,17 @@ public class DangNhapGUI extends javax.swing.JFrame {
     	if(qh == null) {
     		JOptionPane.showMessageDialog(this,
                     "Tài Khoản hoặc mật khẩu sai.");
-    	} else if(qh.equals("Nhân Viên")) {
+    	} else if(qh.equals("Nhan Vien")) {
     		//DangKiGUI dk = new DangKiGUI();
-    		NhanVienGUI nv = new NhanVienGUI();
-    		
+    		NhanVienGUI nv = new NhanVienGUI(txtTenDangNhap.getText().toString());
     		this.setVisible(false);
     		//nv.setLocationRelativeTo(null);
     		nv.setVisible(true);
-    	}  else if(qh.equals("Quản Lý")) {
-    		//TODO
-    		System.out.println("Xuất ra quản lý gui");
-    	}  else if(qh.equals("Khách Hàng"))  {
-    		//TODO	
+    	}  else if(qh.equals("Quan Ly")) {
+    		QuanLyGUI ql = new QuanLyGUI();
+    		this.setVisible(false);
+    		ql.setVisible(true);
+    	}  else if(qh.equals("Khach Hang"))  {
     		System.out.println("Xuất ra khách hàng gui");
     	} 
     }                                           

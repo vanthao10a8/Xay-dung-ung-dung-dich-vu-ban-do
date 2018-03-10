@@ -26,6 +26,7 @@ public class DangKiGUI extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setTitle("Phần mềm quản lý quán cà phê");
     }
 
     /**
@@ -196,7 +197,7 @@ public class DangKiGUI extends javax.swing.JFrame {
         	TaiKhoanHelper tk = new TaiKhoanHelper();
             try {
             	if(matKhau.equals(nhapLaiMatKhau))
-            		if(!tk.dangKiTaiKhoan(tenDangNhap, matKhau, "Khách Hàng"))
+            		if(!tk.dangKiTaiKhoan(tenDangNhap, matKhau, "Khach Hang"))
             		{
             			JOptionPane.showMessageDialog(this,
                                 "Tài khoản hoặc mật khẩu đã tồn tại.");

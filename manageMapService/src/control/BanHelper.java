@@ -141,7 +141,92 @@ public class BanHelper {
 		return false;
 	}
 	
+	public boolean layTinhTrangDatBan(String maBan) {
+		try {
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT [TrangThaiBan] FROM " + BanHelper.tenBang
+					+ " WHERE [MaBan]='" + maBan + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+			int flag = 0;
+			while(rs.next()) {
+				String data = rs.getString("TrangThaiBan");
+				flag = Integer.parseInt(data);
+			}
+			if(flag == 1)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
+	public Ban layThongTinBan(String maBan) {
+		try {
+			//Ban ban = new Ban(maBan, loaiBan, trangThaiBan, thoiGianDat, maKhachDatBan)
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			String sql = "SELECT * FROM " + BanHelper.tenBang
+					+ " WHERE [MaBan]='" + maBan + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				String maBan1 = rs.getString("MaBan");
+				String LoaiBan1 = rs.getString("LoaiBan");
+				String thoiGianDat1 = rs.getString("thoiGianDat");
+				int flag = rs.getInt("TrangThaiBan");
+				boolean trangThai = false;
+				if(flag==1) trangThai = true;
+				String maKhach = rs.getString("MaKhachDatBan");
+				Ban ban = new Ban(maBan1, LoaiBan1, trangThai, thoiGianDat1, maKhach);
+				return ban;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public boolean datBan(String maBan, String maKH) {
+		try {
+			//Ban ban = new Ban(maBan, loaiBan, trangThaiBan, thoiGianDat, maKhachDatBan)
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			SimpleDateFormat sf = new SimpleDateFormat("hh:mm:ss");
+			String s = sf.format(new Date().getTime());
+			String sql = "UPDATE " + BanHelper.tenBang
+					+ " SET [TrangThaiBan]=" + 1 + ", "
+					+ "[MaKhachDatBan]='" + maKH + "', "
+					+ "[ThoiGianDat] ='" + s + "' "
+					+ "WHERE [MaBan] = '" + maBan + "'";
+			stmt.executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean huyDatBan(String maBan) {
+		try {
+			//Ban ban = new Ban(maBan, loaiBan, trangThaiBan, thoiGianDat, maKhachDatBan)
+			con = ConnectionUtils.getConnection();
+			stmt = con.createStatement();
+			//SimpleDateFormat sf = new SimpleDateFormat("hh:mm:ss");
+			//String s = sf.format(new Date().getTime());
+			String sql = "UPDATE " + BanHelper.tenBang
+					+ " SET [TrangThaiBan]=" + 0 + ", "
+					+ "[MaKhachDatBan]='" + "NULL" + "', "
+					+ "[ThoiGianDat] ='" + "NULL" + "' "
+					+ "WHERE [MaBan] = '" + maBan + "'";
+			//System.out.println(sql);
+			stmt.executeUpdate(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	public static void main(String[] args) throws SQLException {
 		BanHelper bh = new BanHelper();
@@ -149,12 +234,15 @@ public class BanHelper {
 		if(bh.kiemTraTonTaiBang(KhachHangHelper.tenBang)) {
 			bh.themKhoa();
 		}*/
-		SimpleDateFormat sf = new SimpleDateFormat("hh:mm:ss");
-		String s = sf.format(new Date().getTime());
-		System.out.println(s);
-		bh.themBan(new Ban("Ban1", "Ban6Nguoi", true, s , ""));
+		//SimpleDateFormat sf = new SimpleDateFormat("hh:mm:ss");
+		//String s = sf.format(new Date().getTime());
+		//System.out.println(s);
+		//bh.themBan(new Ban("Ban1", "Ban6Nguoi", true, s , ""));
 		//bh.xoaBan("Ban1");
-		bh.capNhatBan("Ban1", "Ban3Nguoi", "", s, 0);
+		//bh.capNhatBan("Ban1", "Ban3Nguoi", "", s, 0);
+		//System.out.println(bh.layTinhTrangDatBan("Ban1"));
+		 //bh.huyDatBan("Ban1", "KH103630");
+		bh.datBan("Ban2", "KH103630");
 	}
 	
 }
