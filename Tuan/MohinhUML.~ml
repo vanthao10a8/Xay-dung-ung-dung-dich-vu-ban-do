@@ -119,8 +119,8 @@
 <XPD:OBJ name="OwnedViews[2]" type="UMLClassView" guid="SZNTTX9YkkC4rJRCNJeOQgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">144</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">384</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">332</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">392</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">268</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">212</XPD:ATTR>
 <XPD:REF name="Model">ATNuxGVFZkyzgUSO2vOz6gAA</XPD:REF>
@@ -505,9 +505,9 @@
 <XPD:ATTR name="Name" type="string">getDate</XPD:ATTR>
 <XPD:REF name="Owner">BkcQzg7QTkq5UzOTmCKFgwAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="NTI0gx5QrEWK3xFcEhpv8AAA">
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="D3YJrmBSqU6Q4hpLPWVOvQAA">
 <XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">ngayTao</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">Date</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">r1cS76r+O0+syDtUE3AxZQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -515,9 +515,9 @@
 <XPD:ATTR name="Name" type="string">setDate</XPD:ATTR>
 <XPD:REF name="Owner">BkcQzg7QTkq5UzOTmCKFgwAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="9CNJTzFNgky3IwuGtCrXoAAA">
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="u3kIyDwFwEagHJzOK8EUJQAA">
 <XPD:ATTR name="Name" type="string">ngayTao</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">date</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">Date</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">ptwK39YCSUy2j/T3jbARbwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -814,7 +814,7 @@
 <XPD:REF name="Views[1]">ud4FVhnzDUmacSlpDL3JMQAA</XPD:REF>
 <XPD:REF name="Views[2]">xj0vmgdz5ECKb1eGs3oVTwAA</XPD:REF>
 <XPD:REF name="Views[3]">VNSVtsgMp0WIGwXfYnbHwwAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">18</XPD:ATTR>
+<XPD:ATTR name="#Operations" type="integer">17</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="2B/5o2DQlUyIKZVEqNif0gAA">
 <XPD:ATTR name="Name" type="string">NhanVien</XPD:ATTR>
 <XPD:REF name="Owner">VGTXnE9z2kmJtSgWOumrJAAA</XPD:REF>
@@ -978,9 +978,6 @@
 <XPD:ATTR name="TypeExpression" type="string">int</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">kabN6CFTbkuMTH6ZEVRZhgAA</XPD:REF>
 </XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[17]" type="UMLOperation" guid="xE0onkFQFE6vQuaCmUB8uQAA">
-<XPD:REF name="Owner">VGTXnE9z2kmJtSgWOumrJAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:ATTR name="#TypedParameters" type="integer">2</XPD:ATTR>
 <XPD:REF name="TypedParameters[0]">3+Lib0Sf40W4dju3Qqi7XAAA</XPD:REF>
