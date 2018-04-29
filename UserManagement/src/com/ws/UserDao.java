@@ -116,6 +116,8 @@ public class UserDao {
 			info += coffeeShop.getName();
 			info += ":";
 			info += coffeeShop.getAddress();
+			info += ":";
+			info += coffeeShop.getLstViewOfShop().get(0).getUrl();
 			//String[] cfin = {coffeeShop.getLat(),coffeeShop.getLng(),info}; 
 			double x = Double.parseDouble(coffeeShop.getLat());
 			double y = Double.parseDouble(coffeeShop.getLng());
